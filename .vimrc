@@ -9,6 +9,8 @@ Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
 Plug 'jparise/vim-graphql'
+Plug 'ryanoasis/vim-devicons'
+Plug 'szymonmaszke/vimpyter'
 
 call plug#end()
 
@@ -37,6 +39,7 @@ set shiftwidth=2
 set autoindent
 set smartindent
 set tabstop=2
+set encoding=UTF-8
 
 " More natural split navigation controls
 nnoremap <C-J> <C-W><C-J>
