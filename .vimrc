@@ -11,6 +11,9 @@ Plug 'kien/ctrlp.vim'
 Plug 'jparise/vim-graphql'
 Plug 'ryanoasis/vim-devicons'
 Plug 'szymonmaszke/vimpyter'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'ryanolsonx/vim-lsp-javascript'
 
 call plug#end()
 
@@ -20,6 +23,7 @@ let NERDTreeShowHidden=1
 " Open NERDTree automattically when vim starts up on opening a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+let NERDTreeIgnore = ['\.pyc$', '\.swp$']
 
 " ----- Ale Settings -----
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'javascript': ['eslint']}
@@ -28,6 +32,21 @@ let g:ale_fix_on_save = 1
 
 " ----- CtrlP Settings -----
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|node_modules|target$'
+
+" Use `tab` key to select completions.  Default is arrow keys.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use tab to trigger auto completion.  Default suggests completions as you type.
+let g:completor_auto_trigger = 0
+inoremap <expr> <Tab> Tab_Or_Complete()
+
+" ----- Asynccomplete Settings -----
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_smart_completion = 0
 
 " Pathogen
 execute pathogen#infect()
